@@ -17,6 +17,32 @@ function getNLUinstance() {
     })
     serviceUrl: api_url,
  }
+    
+ const analyzeParams = {
+   'url': 'www.ibm.com',
+   'features': {
+     'entities': {
+     'sentiment': true,
+     'sentiment': false,
+     'sentiment': neutral,
+     'limit': 3,
+     },
+     'keywords': {
+      'sentiment': true,
+      'sentiment': false,
+      'sentiment': neutral,
+       'limit': 3,
+     },
+   },
+ },
+ naturalLanguageUnderstanding.analyze(analyzeParams)
+    .then(analysisResults => {
+      console.log(JSON.stringify(analysisResults, null, 3));
+ })
+ .catch(err => {
+   console.log('error:', err);
+ });
+    
 app.use(express.static('client'))
 
 const cors_app = require('cors');
@@ -26,20 +52,20 @@ app.get("/",(req,res)=>{
     res.render('index.html');
   });
 
-app.get("/url/emotion", (req,res) => {
+app.getNLUInstance("/url/emotion", (req,res) => {
 
-    return res.send({"happy":"90","sad":"10"});
+    return res.send({"happy":"green","sad":"red"});
 });
 
-app.get("/url/sentiment", (req,res) => {
+app.getNLUInstance("/url/sentiment", (req,res) => {
     return res.send("url sentiment for "+req.query.url);
 });
 
-app.get("/text/emotion", (req,res) => {
-    return res.send({"happy":"10","sad":"90"});
+app.getNLUInstance("/text/emotion", (req,res) => {
+    return res.send({"happy":"yellow","sad":"yellow"});
 });
 
-app.get("/text/sentiment", (req,res) => {
+app.getNLUInstance("/text/sentiment", (req,res) => {
     return res.send("text sentiment for "+req.query.text);
 });
 
