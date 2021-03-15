@@ -17,33 +17,33 @@ function getNLUinstance() {
     })
     serviceUrl: api_url,
  }
-dotenv.use(express.static('client'))
+app.use(express.static('client'))
 
-const cors_dotenv = require('cors');
-dotenv.use(cors_dotenv());
+const cors_app = require('cors');
+app.use(cors_app());
 
-dotenv.get("/",(req,res)=>{
+app.get("/",(req,res)=>{
     res.render('index.html');
   });
 
-dotenv.get("/url/emotion", (req,res) => {
+app.get("/url/emotion", (req,res) => {
 
     return res.send({"happy":"90","sad":"10"});
 });
 
-dotenv.get("/url/sentiment", (req,res) => {
+app.get("/url/sentiment", (req,res) => {
     return res.send("url sentiment for "+req.query.url);
 });
 
-dotenv.get("/text/emotion", (req,res) => {
+app.get("/text/emotion", (req,res) => {
     return res.send({"happy":"10","sad":"90"});
 });
 
-dotenv.get("/text/sentiment", (req,res) => {
+app.get("/text/sentiment", (req,res) => {
     return res.send("text sentiment for "+req.query.text);
 });
 
-let server = dotenv.listen(8080, () => {
+let server = app.listen(8080, () => {
     console.log('Listening', server.address().port)
 })
 
