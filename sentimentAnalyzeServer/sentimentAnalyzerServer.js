@@ -22,6 +22,7 @@ function getNLUinstance() {
    'url': 'www.ibm.com',
    'features': {
      'entities': {
+     'emotions': true,    
      'sentiment': true,
      'sentiment': false,
      'sentiment': neutral,
