@@ -19,7 +19,7 @@ function getNLUinstance() {
  }
 dotenv.use(express.static('client'))
 
-const cors_app = require('cors');
+const cors_dotenv = require('cors');
 dotenv.use(cors_dotenv());
 
 dotenv.get("/",(req,res)=>{
