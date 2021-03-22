@@ -53,20 +53,20 @@ app.get("/",(req,res)=>{
     res.render('index.html');
   });
 
-app.getNLUInstance("/url/emotion", (req,res) => {
+app.get("/url/emotion", (req,res) => {
 
     return res.send({"happy":"green","sad":"red"});
 });
 
-app.getNLUInstance("/url/sentiment", (req,res) => {
+app.get("/url/sentiment", (req,res) => {
     return res.send("url sentiment for "+req.query.url);
 });
 
-app.getNLUInstance("/text/emotion", (req,res) => {
+app.get("/text/emotion", (req,res) => {
     return res.send({"happy":"yellow","sad":"yellow"});
 });
 
-app.getNLUInstance("/text/sentiment", (req,res) => {
+app.get("/text/sentiment", (req,res) => {
     return res.send("text sentiment for "+req.query.text);
 });
 
