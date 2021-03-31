@@ -1,47 +1,5 @@
 const express = require('express');
-const dotenv = require('dotenv');
-dotenv.config();
-
-function getNLUInstance() {
-    let api_key = process.env.API_KEY;
-    let api_url = process.env.API_URL;
-
-    const NaturalLanguageUnderstandingv1 = require('ibm-watson/natural-language-understanding/v1');
-    const {IamAuthenticator} = require('ibm-watson/auth');
-
-    const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingv1({
-        version: '2020-08-01',
-        authenticator: new IamAuthenticator({
-            apikey: api_key,
-        }),
-    });
-    serviceUrl: api_url,
- }
-    
- const analyzeParams = {
-   'url': 'api_url',
-   'features': {
-     'entities': {
-     'emotions': true,    
-     'emotion': false,
-     'sentiment': true,
-     'sentiment': false,
-     'limit': 2,
-     },
-     'keywords': {
-      'sentiment': true,
-      'sentiment': false,
-       'limit': 2,
-     },
-   },
- },
- naturalLanguageUnderstanding.analyze(analyzeParams)
-    .then(analysisResults => {
-      console.log(JSON.stringify(analysisResults, null, 2));
- })
- .catch(err => {
-   console.log('error:', err);
- });
+const app = new express();
     
 app.use(express.static('client'))
 
