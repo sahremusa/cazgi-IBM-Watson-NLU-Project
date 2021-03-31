@@ -14,31 +14,30 @@ function getNLUinstance() {
         authenticator: new IamAuthenticator({
             apikey: api_key,
         }),
-    })
+    });
     serviceUrl: api_url,
  }
     
  const analyzeParams = {
-   'url': 'www.ibm.com',
+   'url': 'api_url',
    'features': {
      'entities': {
      'emotions': true,    
+     'emotion': false,
      'sentiment': true,
      'sentiment': false,
-     'sentiment': neutral,
-     'limit': 3,
+     'limit': 2,
      },
      'keywords': {
       'sentiment': true,
       'sentiment': false,
-      'sentiment': neutral,
-       'limit': 3,
+       'limit': 2,
      },
    },
  },
  naturalLanguageUnderstanding.analyze(analyzeParams)
     .then(analysisResults => {
-      console.log(JSON.stringify(analysisResults, null, 3));
+      console.log(JSON.stringify(analysisResults, null, 2));
  })
  .catch(err => {
    console.log('error:', err);
@@ -55,7 +54,7 @@ app.get("/",(req,res)=>{
 
 app.get("/url/emotion", (req,res) => {
 
-    return res.send({"happy":"green","sad":"red"});
+    return res.send({"happy":"90","sad":"10"});
 });
 
 app.get("/url/sentiment", (req,res) => {
@@ -63,7 +62,7 @@ app.get("/url/sentiment", (req,res) => {
 });
 
 app.get("/text/emotion", (req,res) => {
-    return res.send({"happy":"yellow","sad":"yellow"});
+    return res.send({"happy":"10","sad":"90"});
 });
 
 app.get("/text/sentiment", (req,res) => {
